@@ -109,8 +109,8 @@ module Guard
         #
         def write_javascript_file(content, file, directory, options)
           FileUtils.mkdir_p(File.expand_path(directory)) if !File.directory?(directory) && !options[:noop]
-          template_name = File.join(directory, File.basename(file.gsub(/(js\.eco|eco)$/, '')))
-          filename = "#{template_name}js"
+          template_name = File.join(directory, File.basename(file.gsub(/\.(js\.eco|eco)$/, '')))
+          filename = "#{template_name}.js"
           content = "window.JST['#{template_name}'] = #{content}"
           File.open(File.expand_path(filename), 'w') { |f| f.write(content) } if !options[:noop]
 
